@@ -23,14 +23,15 @@ import * as THREE from "three"
 const Sphere = class{
     constructor(){
         this.sphere = null;
+        this.initialPosition = { x: -2, z: -2 };
     }
     
     createSphere(){
         let Sgeometry = new THREE.SphereGeometry(0.6, 32, 32);
         const Smaterial = new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true });
         this.sphere = new THREE.Mesh(Sgeometry, Smaterial);
-        this.sphere.position.x = -2;
-        this.sphere.position.z = -2;
+        this.sphere.position.x = this.initialPosition.x;
+        this.sphere.position.z = this.initialPosition.z;
         this.sphere.rotation.y = 0.5;
         return this.sphere;
     }
@@ -39,6 +40,9 @@ const Sphere = class{
         let Sgeometry = new THREE.SphereGeometry(e, 32, 32);
         this.sphere.geometry.dispose();
         this.sphere.geometry = Sgeometry;
+        this.sphere.position.x = this.initialPosition.x;
+        this.sphere.position.z = this.initialPosition.z;
+        console.log(this.sphere.position.z);
     }
 
     

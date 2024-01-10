@@ -49,13 +49,13 @@
             const folder3 = panel.addFolder( 'カメラ' );
             
             settings = {
-                "size x": 0.5,
+                "size x": 1,
                 "size y": 1,
                 "size z": 1,
                 "radius": 1,
             }
 
-            folder1.add(settings, "size x", 0.5, 5, 0.05).listen().onChange( function(x) {
+            folder1.add(settings, "size x", 1, 5, 0.05).listen().onChange( function(x) {
                 setSize(x,settings["size y"],settings["size z"]);
             });
             folder1.add(settings, "size y", 1, 5, 0.05).listen().onChange( function(y) {
@@ -64,8 +64,8 @@
             folder1.add(settings, "size z", 1, 5, 0.05).listen().onChange( function(z) {
                 setSize(settings["size x"],settings["size y"],z);
             });
-            folder2.add(settings, "radius", 1, 5, 0.05).listen().onChange( function(x) {
-                sphere.changeSize(x);
+            folder2.add(settings, "radius", 0.6, 5, 0.05).listen().onChange( function(radius) {
+                sphere.changeSize(radius);
             });
 
             folder1.open();
@@ -86,7 +86,7 @@
         document.body.appendChild( renderer.domElement );
 
         const container = document.createElement( 'div' );
-        let geo = new THREE.BoxGeometry(0.5, 1, 1.5);
+        let geo = new THREE.BoxGeometry(1, 1, 1);
         const wireframe = true;
         const mat = new THREE.MeshBasicMaterial({ color: 0xff0088, wireframe });
         let mesh = new THREE.Mesh(geo, mat);
