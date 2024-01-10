@@ -1,12 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Virtual EC site</title>
 </head>
 <body>
-    
+    <div></div>
+    <script type="importmap">
+        {
+        "imports": {
+            "three": "./node_modules/three/build/three.module.js",
+            "OrbitControls": "./node_modules/three/examples/jsm/controls/OrbitControls.js",
+            "Sphere": "./module/Sphere.js",
+            "three/addons/": "./node_modules/three/examples/jsm/"
+        }
+        }
+    </script>
+    <!-- <script type="module">
+        import Hello from './module/Hello.js';
+        // import Cube from './module/Cube.js';
+        import Sample from './module/egSample.js';
+        // Cube(); 
+        Hello();
+        Sample();
+    </script> -->
+    <script type="module">
+        import * as THREE from "three";
+        // import { THREE, scene, camera, renderer } from "https://code4fukui.github.io/egxr.js/egxr.js";
+        import { OrbitControls } from "OrbitControls";
+        import Sphere  from "Sphere";
+        import { GUI } from "three/addons/libs/lil-gui.module.min.js";
+        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+        let actions, settings;
+
+        
+
+
+        function createPanel() {
+
+
+            const panel = new GUI( { width: 310 } );
+
+            const folder1 = panel.addFolder( '立方体' );
+            const folder2 = panel.addFolder( '球体' );
+            const folder3 = panel.addFolder( 'カメラ' );
+            
+            settings = {
+                "size x": 0.5,
+                "size y": 1,
+                "size z": 1,
+                "radius": 1,
+            }
+
+            folder1.add(settings, "size x", 0.5, 5, 0.05).listen().onChange( function(x) {
+                setSize(x,settings["size y"],settings["size z"]);
+            });
+            folder1.add(settings, "size y", 1, 5, 0.05).listen().onChange( function(y) {
+                setSize(settings["size x"],y,settings["size z"]);
+            });
+            folder1.add(settings, "size z", 1, 5, 0.05).listen().onChange( function(z) {
+                setSize(settings["size x"],settings["size y"],z);
+            });
+            folder2.add(settings, "radius", 1, 5, 0.05).listen().onChange( function(x) {
+                sphere.changeSize(x);
+            });
+
+            folder1.open();
+            folder2.open();
+            folder3.open();
+
+
+        }
+   
+        createPanel();
+        // import { Button } from "Button"; 
+        // add css
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize( window.innerWidth, window.innerHeight );
+        document.body.appendChild( renderer.domElement );
+
+        const container = document.createElement( 'div' );
+        let geo = new THREE.BoxGeometry(0.5, 1, 1.5);
+        const wireframe = true;
+        const mat = new THREE.MeshBasicMaterial({ color: 0xff0088, wireframe });
+        let mesh = new THREE.Mesh(geo, mat);
+        const controls = new OrbitControls( camera, renderer.domElement);
+        camera.position.set( 0, 0, 1 );
+        scene.add(mesh);
+
+        const setSize = (x, y, z) =>{
+            geo = new THREE.BoxGeometry(x,y,z);
+            mesh.geometry.dispose();
+            mesh.geometry = geo;
+        }
+        
+        let sphere = new Sphere();
+        let sphereMesh = sphere.createSphere();
+   
+        
+        scene.add(sphereMesh);
+
+        console.log(sphere);
+
+        renderer.setAnimationLoop(() => {
+            mesh.position.z = -2;
+            mesh.rotation.y += .005;
+
+            sphereMesh.rotation.y += .005;
+       
+            
+
+            // Update the argument of sphere here
+            
+
+            renderer.render(scene, camera);
+        });
+            // sphere.rotation.y += .01;
+            
+            
+        </script>
 </body>
-<script type="module" src = "./index.js"></script>
 </html>
