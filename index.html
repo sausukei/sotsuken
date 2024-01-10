@@ -9,12 +9,14 @@
     <div></div>
     <script type="importmap">
         {
-        "imports": {
-            "three": "./node_modules/three/build/three.module.js",
-            "OrbitControls": "./node_modules/three/examples/jsm/controls/OrbitControls.js",
-            "Sphere": "./module/Sphere.js",
-            "three/addons/": "./node_modules/three/examples/jsm/"
-        }
+        {
+            "imports": {
+              "three": "https://unpkg.com/three@<version>/build/three.module.js",
+              "three/addons/": "https://unpkg.com/three@<version>/examples/jsm/",
+              "OrbitControls": "three/addons/OrbitControls.js",
+              "Sphere": "./module/Sphere.js",
+            }
+          }
         }
     </script>
     <!-- <script type="module">
