@@ -29,58 +29,58 @@
     </script> -->
     <script type="module">
         // import * as THREE from "three";
-        import { THREE, scene, camera, renderer } from "https://code4fukui.github.io/egxr.js/egxr.js";
-        import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-        import Sphere  from "Sphere";
-        import { GUI } from "three/addons/libs/lil-gui.module.min.js";
-        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-        import { ARButton } from 'three/addons/webxr/ARButton.js'
+        // // import { THREE, scene, camera, renderer } from "https://code4fukui.github.io/egxr.js/egxr.js";
+        // import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+        // import Sphere  from "Sphere";
+        // import { GUI } from "three/addons/libs/lil-gui.module.min.js";
+        // import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+        // import { ARButton } from 'three/addons/webxr/ARButton.js'
         import * as eg from "https://js.sabae.cc/egvr.js";
         
 
         
-        let actions, settings;
+        // let actions, settings;
         
         
 
 
-        const createPanel = () => {
+        // const createPanel = () => {
 
 
-            const panel = new GUI( { width: 310 } );
+        //     const panel = new GUI( { width: 310 } );
 
-            const folder1 = panel.addFolder( '立方体' );
-            const folder2 = panel.addFolder( '球体' );
-            const folder3 = panel.addFolder( 'カメラ' );
+        //     const folder1 = panel.addFolder( '立方体' );
+        //     const folder2 = panel.addFolder( '球体' );
+        //     const folder3 = panel.addFolder( 'カメラ' );
             
-            settings = {
-                "size x": 1,
-                "size y": 1,
-                "size z": 1,
-                "radius": 1,
-            }
+        //     settings = {
+        //         "size x": 1,
+        //         "size y": 1,
+        //         "size z": 1,
+        //         "radius": 1,
+        //     }
 
-            folder1.add(settings, "size x", 1, 5, 0.05).listen().onChange( function(x) {
-                setSize(x,settings["size y"],settings["size z"]);
-            });
-            folder1.add(settings, "size y", 1, 5, 0.05).listen().onChange( function(y) {
-                setSize(settings["size x"],y,settings["size z"]);
-            });
-            folder1.add(settings, "size z", 1, 5, 0.05).listen().onChange( function(z) {
-                setSize(settings["size x"],settings["size y"],z);
-            });
-            folder2.add(settings, "radius", 0.6, 5, 0.05).listen().onChange( function(radius) {
-                sphere.changeSize(radius);
-            });
+        //     folder1.add(settings, "size x", 1, 5, 0.05).listen().onChange( function(x) {
+        //         setSize(x,settings["size y"],settings["size z"]);
+        //     });
+        //     folder1.add(settings, "size y", 1, 5, 0.05).listen().onChange( function(y) {
+        //         setSize(settings["size x"],y,settings["size z"]);
+        //     });
+        //     folder1.add(settings, "size z", 1, 5, 0.05).listen().onChange( function(z) {
+        //         setSize(settings["size x"],settings["size y"],z);
+        //     });
+        //     folder2.add(settings, "radius", 0.6, 5, 0.05).listen().onChange( function(radius) {
+        //         sphere.changeSize(radius);
+        //     });
 
-            folder1.open();
-            folder2.open();
-            folder3.open();
+        //     folder1.open();
+        //     folder2.open();
+        //     folder3.open();
 
 
-        }
+        // }
    
-        createPanel();
+        // createPanel();
         // import { Button } from "Button"; 
         // add css
 
@@ -91,44 +91,44 @@
         // document.body.appendChild( renderer.domElement );
         
         eg.model("./test.glb", 2, 0, -30, 0, 0.6); // niigata
+        eg.sky();
+        //  container = document.createElement( 'div' );
+        // let geo = new THREE.BoxGeometry(1, 1, 1);
+        // const wireframe = true;
+        // const mat = new THREE.MeshBasicMaterial({ color: 0xff0088, wireframe });
+        // let mesh = new THREE.Mesh(geo, mat);
+        // // const controls = new OrbitControls( camera, renderer.domElement);
+        // camera.position.set( 0, 0, 1 );
+        // scene.add(mesh);
 
-        const container = document.createElement( 'div' );
-        let geo = new THREE.BoxGeometry(1, 1, 1);
-        const wireframe = true;
-        const mat = new THREE.MeshBasicMaterial({ color: 0xff0088, wireframe });
-        let mesh = new THREE.Mesh(geo, mat);
-        // const controls = new OrbitControls( camera, renderer.domElement);
-        camera.position.set( 0, 0, 1 );
-        scene.add(mesh);
-
-        const setSize = (x, y, z) =>{
-            geo = new THREE.BoxGeometry(x,y,z);
-            mesh.geometry.dispose();
-            mesh.geometry = geo;
-        }
+        // const setSize = (x, y, z) =>{
+        //     geo = new THREE.BoxGeometry(x,y,z);
+        //     mesh.geometry.dispose();
+        //     mesh.geometry = geo;
+        // }
         
-        let sphere = new Sphere();
-        let sphereMesh = sphere.createSphere();
+        // let sphere = new Sphere();
+        // let sphereMesh = sphere.createSphere();
    
         
-        scene.add(sphereMesh);
+        // scene.add(sphereMesh);const
 
-        console.log(sphere);
+        // console.log(sphere);
 
-        renderer.setAnimationLoop(() => {
-            mesh.position.z = -2;
-            mesh.rotation.y += .005;
+        // renderer.setAnimationLoop(() => {
+        //     mesh.position.z = -2;
+        //     mesh.rotation.y += .005;
 
-            sphereMesh.rotation.y += .005;
+        //     sphereMesh.rotation.y += .005;
        
             
 
-            // Update the argument of sphere here
+        //     // Update the argument of sphere here
             
 
-            renderer.render(scene, camera);
-        });
-            // sphere.rotation.y += .01;
+        //     renderer.render(scene, camera);
+        // });
+        //     // sphere.rotation.y += .01;
             
             
         </script>
