@@ -12,8 +12,8 @@
         
         {
             "imports": {
-              "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-              "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+              "three": "https://code4fukui.github.io/three.js/build/three.module.js",
+              "three/addons/": "https://code4fukui.github.io/three.js/examples/jsm/",
               "Sphere": "./module/Sphere.js"
             }
           }
@@ -28,8 +28,8 @@
         Sample();
     </script> -->
     <script type="module">
-        import * as THREE from "three";
-        // import { THREE, scene, camera, renderer } from "https://code4fukui.github.io/egxr.js/egxr.js";
+        // import * as THREE from "three";
+        import { THREE, scene, camera, renderer } from "https://code4fukui.github.io/egxr.js/egxr.js";
         import { OrbitControls } from "three/addons/controls/OrbitControls.js";
         import Sphere  from "Sphere";
         import { GUI } from "three/addons/libs/lil-gui.module.min.js";
@@ -84,14 +84,12 @@
         // import { Button } from "Button"; 
         // add css
 
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-        renderer.setSize( window.innerWidth, window.innerHeight );
-        renderer.xr.enabled = true;
-        document.body.appendChild( renderer.domElement );
-        const arbtn = ARButton.createButton(renderer);
-        document.body.appendChild(arbtn);
+        // const scene = new THREE.Scene();
+        // const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+        // const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        // renderer.setSize( window.innerWidth, window.innerHeight );
+        // document.body.appendChild( renderer.domElement );
+        
 
         const container = document.createElement( 'div' );
         let geo = new THREE.BoxGeometry(1, 1, 1);
